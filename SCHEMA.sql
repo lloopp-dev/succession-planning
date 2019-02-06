@@ -1,0 +1,252 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.7
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Jan 23, 2019 at 07:45 AM
+-- Server version: 5.6.38
+-- PHP Version: 7.2.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `succession_planning`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee`
+--
+
+CREATE TABLE `employee` (
+  `LEGACY NO.` varchar(255) DEFAULT NULL,
+  `SAP PERNR` int(11) DEFAULT NULL,
+  `SEPARATION DATE` varchar(255) DEFAULT NULL,
+  `FULL NAME` varchar(255) NOT NULL DEFAULT '',
+  `LAST NAME` varchar(255) DEFAULT NULL,
+  `FIRST NAME` varchar(255) DEFAULT NULL,
+  `IMMEDIATE SUPERIOR CODE` varchar(255) DEFAULT NULL,
+  `MI` varchar(255) DEFAULT NULL,
+  `JL` varchar(255) DEFAULT NULL,
+  `IMMEDIATE SUPERIOR` varchar(255) DEFAULT NULL,
+  `POSITION` varchar(255) DEFAULT NULL,
+  `GROUP` varchar(255) DEFAULT NULL,
+  `SECTION` varchar(255) DEFAULT NULL,
+  `DEPARTMENT` varchar(255) DEFAULT NULL,
+  `DIVISION` varchar(255) DEFAULT NULL,
+  `HOME` varchar(255) DEFAULT NULL,
+  `STATUS OF EMPLOYMENT` varchar(255) DEFAULT NULL,
+  `UNION MEMBERSHIP` varchar(255) DEFAULT NULL,
+  `ACHD` varchar(255) DEFAULT NULL,
+  `DATE HIRED` varchar(255) DEFAULT NULL,
+  `TENURE` varchar(255) DEFAULT NULL,
+  `TENURE RANGE` varchar(255) DEFAULT NULL,
+  `GENDER` varchar(255) DEFAULT NULL,
+  `BIRTHDATE` varchar(255) DEFAULT NULL,
+  `AGE` varchar(255) DEFAULT NULL,
+  `AGE RANGE` varchar(255) DEFAULT NULL,
+  `RETIREMENT` varchar(255) DEFAULT NULL,
+  `RETIREMENT YEAR` int(11) DEFAULT NULL,
+  `COMPANY CODE` varchar(255) DEFAULT NULL,
+  `PER DEPT` varchar(255) DEFAULT NULL,
+  `FUNCTION` varchar(255) DEFAULT NULL,
+  `LOCATION` varchar(255) DEFAULT NULL,
+  `PER DEPT.` varchar(255) DEFAULT NULL,
+  `MAIN LOCATION` varchar(255) DEFAULT NULL,
+  `HIGHEST EDUCATIONAL ATTAINMENT` varchar(255) DEFAULT NULL,
+  `PROFESSIONAL LICENSES` varchar(255) DEFAULT NULL,
+  `MARITAL STATUS` varchar(255) DEFAULT NULL,
+  `IC/PM` varchar(255) DEFAULT NULL,
+  `CORPORATE EMAIL` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `meta`
+--
+
+CREATE TABLE `meta` (
+  `TARGET NAME` varchar(255) NOT NULL,
+  `CANDIDATE NAME` varchar(255) NOT NULL,
+  `Remarks` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profiles`
+--
+
+CREATE TABLE `profiles` (
+  `CRITICAL_POSITION` varchar(100) DEFAULT NULL,
+  `TARGET EMPLOYEE NUMBER` varchar(100) DEFAULT NULL,
+  `ID` varchar(100) DEFAULT NULL,
+  `TARGET SEPARATION DATE` varchar(100) DEFAULT NULL,
+  `TARGET NAME` varchar(100) DEFAULT NULL,
+  `TARGET RETIREMENT YEAR` int(11) DEFAULT NULL,
+  `T-POSITION` varchar(100) DEFAULT NULL,
+  `T-POSITION LEVEL` varchar(100) DEFAULT NULL,
+  `TARGET LEVEL_RANK` int(11) DEFAULT NULL,
+  `T-TEAM SIZE` int(11) DEFAULT NULL,
+  `TARGET TEAM SIZE LEVEL` int(11) DEFAULT NULL,
+  `T-SUPERVISOR NAME` varchar(100) DEFAULT NULL,
+  `TARGET SUPERVISOR POSITION` varchar(100) DEFAULT NULL,
+  `TARGET SECOND SUPERVISOR NAME` varchar(100) DEFAULT NULL,
+  `TARGET GROUP` varchar(100) DEFAULT NULL,
+  `TARGET JOB FAMILY` varchar(100) DEFAULT NULL,
+  `TARGET JOB SUB-FAMILY` varchar(100) DEFAULT NULL,
+  `TARGET SECTION` varchar(100) DEFAULT NULL,
+  `TARGET DEPARTMENT` varchar(100) DEFAULT NULL,
+  `TARGET DIVISION` varchar(100) DEFAULT NULL,
+  `TARGET HOME` varchar(100) DEFAULT NULL,
+  `TARGET STATUS OF EMPLOYMENT` varchar(100) DEFAULT NULL,
+  `TARGET DATE HIRED` varchar(100) DEFAULT NULL,
+  `TARGET TENURE` varchar(100) DEFAULT NULL,
+  `TARGET PER DEPT` varchar(100) DEFAULT NULL,
+  `TARGET MAIN LOCATION` varchar(100) DEFAULT NULL,
+  `TARGET HIGHEST EDUCATIONAL ATTAINMENT` varchar(100) DEFAULT NULL,
+  `T-COURSE` varchar(100) DEFAULT NULL,
+  `TARGET INSTITUTION` varchar(100) DEFAULT NULL,
+  `TARGET MUNICIPALITY` varchar(100) DEFAULT NULL,
+  `TARGET PROVINCE` varchar(100) DEFAULT NULL,
+  `TARGET INSTITUTION TYPE` varchar(100) DEFAULT NULL,
+  `T-GENERIC POSITION` varchar(100) DEFAULT NULL,
+  `T-DOMAIN` varchar(100) DEFAULT NULL,
+  `T-SUB-DOMAIN` varchar(100) DEFAULT NULL,
+  `T-AREA` varchar(100) DEFAULT NULL,
+  `T-LICENSE` varchar(100) DEFAULT NULL,
+  `TARGET IC/PM` varchar(100) DEFAULT NULL,
+  `TARGET 2014` varchar(100) DEFAULT NULL,
+  `TARGET 2015` varchar(100) DEFAULT NULL,
+  `TARGET 2016` varchar(100) DEFAULT NULL,
+  `TARGET 2017` varchar(100) DEFAULT NULL,
+  `TARGET PACE_SCORE` varchar(100) DEFAULT NULL,
+  `Influence-T` varchar(100) DEFAULT NULL,
+  `Cult# Networks-T` varchar(100) DEFAULT NULL,
+  `Nav# Politics-T` varchar(100) DEFAULT NULL,
+  `Comp# Comm#-T` varchar(100) DEFAULT NULL,
+  `Collaboration-T` varchar(100) DEFAULT NULL,
+  `Sell Vision-T` varchar(100) DEFAULT NULL,
+  `Emp# & Delegation-T` varchar(100) DEFAULT NULL,
+  `Coach & Dev# Others-T` varchar(100) DEFAULT NULL,
+  `Lead Change-T` varchar(100) DEFAULT NULL,
+  `Est# Strat# Dir#-T` varchar(100) DEFAULT NULL,
+  `Drive Exec#-T` varchar(100) DEFAULT NULL,
+  `Op'l# Dec-making-T` varchar(100) DEFAULT NULL,
+  `Entrepreneurship-T` varchar(100) DEFAULT NULL,
+  `Bus# Savvy-T` varchar(100) DEFAULT NULL,
+  `Build Org# Talent-T` varchar(100) DEFAULT NULL,
+  `Cust# Focus-T` varchar(100) DEFAULT NULL,
+  `Bus# Acumen-T` varchar(100) DEFAULT NULL,
+  `Passion for Results-T` varchar(100) DEFAULT NULL,
+  `Authenticity-T` varchar(100) DEFAULT NULL,
+  `Learning Agility-T` varchar(100) DEFAULT NULL,
+  `TARGET Feedback_Score` varchar(100) DEFAULT NULL,
+  `CANDIDATE EMPLOYEE NUMBER` varchar(100) DEFAULT NULL,
+  `CANDIDATE ID` varchar(100) DEFAULT NULL,
+  `CANDIDATE SEPARATION DATE` varchar(100) DEFAULT NULL,
+  `CANDIDATE NAME` varchar(100) DEFAULT NULL,
+  `CANDIDATE RETIREMENT YEAR` varchar(100) DEFAULT NULL,
+  `C-POSITION` varchar(100) DEFAULT NULL,
+  `C-POSITION LEVEL` varchar(100) DEFAULT NULL,
+  `CANDIDATE LEVEL_RANK` varchar(100) DEFAULT NULL,
+  `C-TEAM SIZE` varchar(100) DEFAULT NULL,
+  `CANDIDATE TEAM SIZE LEVEL` varchar(100) DEFAULT NULL,
+  `C-SUPERVISOR NAME` varchar(100) DEFAULT NULL,
+  `CANDIDATE SUPERVISOR POSITION` varchar(100) DEFAULT NULL,
+  `CANDIDATE SECOND SUPERVISOR NAME` varchar(100) DEFAULT NULL,
+  `CANDIDATE GROUP` varchar(100) DEFAULT NULL,
+  `CANDIDATE JOB FAMILY` varchar(100) DEFAULT NULL,
+  `CANDIDATE JOB SUB-FAMILY` varchar(100) DEFAULT NULL,
+  `CANDIDATE SECTION` varchar(100) DEFAULT NULL,
+  `CANDIDATE DEPARTMENT` varchar(100) DEFAULT NULL,
+  `CANDIDATE DIVISION` varchar(100) DEFAULT NULL,
+  `CANDIDATE HOME` varchar(100) DEFAULT NULL,
+  `CANDIDATE STATUS OF EMPLOYMENT` varchar(100) DEFAULT NULL,
+  `CANDIDATE DATE HIRED` varchar(100) DEFAULT NULL,
+  `CANDIDATE TENURE` varchar(100) DEFAULT NULL,
+  `CANDIDATE PER DEPT` varchar(100) DEFAULT NULL,
+  `CANDIDATE MAIN LOCATION` varchar(100) DEFAULT NULL,
+  `CANDIDATE HIGHEST EDUCATIONAL ATTAINMENT` varchar(100) DEFAULT NULL,
+  `C-COURSE` varchar(100) DEFAULT NULL,
+  `CANDIDATE INSTITUTION` varchar(100) DEFAULT NULL,
+  `CANDIDATE MUNICIPALITY` varchar(100) DEFAULT NULL,
+  `CANDIDATE PROVINCE` varchar(100) DEFAULT NULL,
+  `CANDIDATE INSTITUTION TYPE` varchar(100) DEFAULT NULL,
+  `C-GENERIC POSITION` varchar(100) DEFAULT NULL,
+  `C-DOMAIN` varchar(100) DEFAULT NULL,
+  `C-SUB-DOMAIN` varchar(100) DEFAULT NULL,
+  `C-AREA` varchar(100) DEFAULT NULL,
+  `C-PROFESSIONAL LICENSE` varchar(100) DEFAULT NULL,
+  `CANDIDATE IC/PM` varchar(100) DEFAULT NULL,
+  `2014` varchar(100) DEFAULT NULL,
+  `2015` varchar(100) DEFAULT NULL,
+  `2016` varchar(100) DEFAULT NULL,
+  `2017` varchar(100) DEFAULT NULL,
+  `CANDIDATE PACE_SCORE` varchar(100) DEFAULT NULL,
+  `Influence-C` varchar(100) DEFAULT NULL,
+  `Cult# Networks-C` varchar(100) DEFAULT NULL,
+  `Nav# Politics-C` varchar(100) DEFAULT NULL,
+  `Comp# Comm#-C` varchar(100) DEFAULT NULL,
+  `Collaboration-C` varchar(100) DEFAULT NULL,
+  `Sell Vision-C` varchar(100) DEFAULT NULL,
+  `Emp# & Delegation-C` varchar(100) DEFAULT NULL,
+  `Coach & Dev# Others-C` varchar(100) DEFAULT NULL,
+  `Lead Change-C` varchar(100) DEFAULT NULL,
+  `Est# Strat# Dir#-C` varchar(100) DEFAULT NULL,
+  `Drive Exec#-C` varchar(100) DEFAULT NULL,
+  `Op'l# Dec-making-C` varchar(100) DEFAULT NULL,
+  `Entrepreneurship-C` varchar(100) DEFAULT NULL,
+  `Bus# Savvy-C` varchar(100) DEFAULT NULL,
+  `Build Org# TalenC-C` varchar(100) DEFAULT NULL,
+  `Cust# Focus-C` varchar(100) DEFAULT NULL,
+  `Bus# Acumen-C` varchar(100) DEFAULT NULL,
+  `Passion for Results-C` varchar(100) DEFAULT NULL,
+  `Authenticity-C` varchar(100) DEFAULT NULL,
+  `Learning Agility-C` varchar(100) DEFAULT NULL,
+  `CANDIDATE Feedback_Score` varchar(100) DEFAULT NULL,
+  `GROUP PROXIMITY CATEGORY` varchar(100) DEFAULT NULL,
+  `Affinity_Score` varchar(100) DEFAULT NULL,
+  `Position_Level_Score` varchar(100) DEFAULT NULL,
+  `SOC_Rank_Score` varchar(100) DEFAULT NULL,
+  `POSITION EXPERTISE SCORE` varchar(100) DEFAULT NULL,
+  `DOMAIN EXPERTISE SCORE` varchar(100) DEFAULT NULL,
+  `SUB DOMAIN EXPERTISE SCORE` varchar(100) DEFAULT NULL,
+  `AREA EXPERTISE SCORE` varchar(100) DEFAULT NULL,
+  `2. 360 DEG. FEEDBACK SCORE` varchar(100) DEFAULT NULL,
+  `1. HISTORICAL PERFORMANCE SCORE` varchar(100) DEFAULT NULL,
+  `Position Level Gap` varchar(100) DEFAULT NULL,
+  `Team Size Level Gap` varchar(100) DEFAULT NULL,
+  `LICENSE CHECK` varchar(100) DEFAULT NULL,
+  `REMAINING TENURE` varchar(100) DEFAULT NULL,
+  `3. LEVEL PROXIMITY SCORE` varchar(100) DEFAULT NULL,
+  `5. GROUP PROXIMITY SCORE` varchar(100) DEFAULT NULL,
+  `4. FUNCTIONAL AFFINITY SCORE` varchar(100) DEFAULT NULL,
+  `TOTAL CANDIDATE SCORE` decimal(5,2) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `employee`
+--
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`FULL NAME`);
+
+--
+-- Indexes for table `meta`
+--
+ALTER TABLE `meta`
+  ADD PRIMARY KEY (`TARGET NAME`,`CANDIDATE NAME`);
+
+--
+-- Indexes for table `profiles`
+--
+ALTER TABLE `profiles`
+  ADD KEY `TARGET NAME` (`TARGET NAME`),
+  ADD KEY `T-POSITION` (`T-POSITION`);

@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+    <title>Natural Intelligence Solutions</title>
+    <link href="css/bootstrap-material-design.css" rel="stylesheet">
+    <script src="/js/underscore-min.js"></script>
+    <script src="/js/underscore-min.js"></script>
+    <script src="/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap-material-design.min.js"></script>
+    <script src="/js/feather.min.js"></script>
+    <script src="/js/jquery.easy-autocomplete.min.js"></script>
+    <link rel="stylesheet" href="/css/easy-autocomplete.min.css">
+    <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">HR Succession Planning</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/data">Import Data</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav pull-right">
+                <li class="nav-item">
+                    <a class="nav-link" href='javascript:(function(c){var a,b="You have logged out.";try{a=document.execCommand("ClearAuthenticationCache")}catch(d){}a||((a=window.XMLHttpRequest?new window.XMLHttpRequest:window.ActiveXObject?new ActiveXObject("Microsoft.XMLHTTP"):void 0)?(a.open("HEAD",c||location.href,!0,"logout",(new Date).getTime().toString()),a.send(""),a=1):a=void 0);a||(b="Your browser is too old or too weird to support log out functionality. Close all windows and restart the browser.");alert(b)})(/*pass safeLocation here if you need*/); window.location = "/";'>Log-out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <br>
+        <div class="row jumbotron" style="padding:20px;">
+            <div class="col-12">
+                <form class="form-inline0">
+                    <div class="row">
+                        <div class="offset-md-1 col-md-5 filter">
+                            <label class='' for="">&nbsp;</label>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <!-- Default checked -->
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="type-position" name="target-type" checked>
+                                            <label class="custom-control-label" for="type-position">Target Position</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <!-- <select id="select-tn" class="custom-select d-block w-100">
+                                            <option value="">Choose...</option>
+                                        </select> -->
+                                        <input id="filter-position" class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <br />
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="type-name" name="target-type">
+                                            <label class="custom-control-label" for="type-name">Target Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <!-- <select id="select-tn" class="custom-select d-block w-100">
+                                            <option value="">Choose...</option>
+                                        </select> -->
+                                        <input id="filter-name" class="form-control" type="text" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 filter" id="select-tpl-container">
+                            <label class='w-100' for="">Position Level</label>
+                            <select id="select-tpl" class="w-100" multiple="multiple">
+                                <!-- <option value="">Choose...</option> -->
+                            </select>
+                        </div>
+                        <div class="col-md-2 filter" id="select-tc-container" style="display: none">
+                            <label class='block' for="">Group Proximity Category <br />(Org. Hierarchy)</label>
+                            <select id="select-tc" class="w-100" multiple="multiple" disabled="disabled">
+                                <!-- <option value="">Choose...</option> -->
+                            </select>
+                        </div>
+                        <div class="col-md-2 filter" id="select-ta-container" style="display: none">
+                            <label class='block' for="">Functional Affinity <br />(Expertise)</label>
+                            <select id="select-ta" class="w-100" multiple="multiple" disabled="disabled">
+                                <!-- <option value="">Choose...</option> -->
+                            </select>
+                        </div>
+                        <div class="col-md-2 filter" id="select-plg-container" style="display: none">
+                            <label class='block' for="">Position Level Gap <br />&nbsp;</label>
+                            <select id="select-plg" class="w-100" multiple="multiple" disabled="disabled">
+                                <!-- <option value="">Choose...</option> -->
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div id="sidebar-name" class="sidebar-sticky" style="display:none">
+                    <h3 class='label-primary'>Target Profile</h3>
+                    <ul class="nav flex-column">
+                        <li>
+                            <i class="material-icons">group</i>
+                            Group: <span id='target-group' class='value'>-</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">assignment</i>
+                            Position: <span id='target-position' class='value'>-</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">reorder</i>
+                            Position Level: <span id='target-position-level' class='value'>-</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">accessibility</i>
+                            Job Family: <span id='target-position-job-family' class='value'>-</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">tag_faces</i>
+                            Team Size: <span id='target-team-size' class='value'>-</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">home</i>
+                            Location: <span id='target-location' class='value'>-</span>
+                        </li>
+                        <li style="display: none">
+                            <i class="material-icons">grade</i>
+                            Course: <span id='target-course' class='value'>-</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">turned_in</i>
+                            License: <span id='target-license' class='value'>-</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">history</i>
+                            Retirement Year: <span id='target-retirement-year' class='value'>-</span>
+                        </li>
+                        <!-- <li>
+                            <i class="material-icons">history</i>
+                            Age: <span id='target-age' class='value'>-</span>
+                        </li> -->
+                    </ul>
+                </div>
+                <div id="sidebar-position" class="sidebar-sticky">
+                    <h3 class='label-primary'>Target Profile</h3>
+                    <ul class="nav flex-column">
+                        <li>
+                            <i class="material-icons">turned_in</i>
+                            License: <span id='target-position-license' class='value'>-</span>
+                        </li>
+                        <!-- <li>
+                            <i class="material-icons">reorder</i>
+                            Position Level: <span id='target-position-position-level' class='value'>-</span>
+                        </li> -->
+                        <li>
+                            <i class="material-icons">reorder</i>
+                            Job Family: <span id='target-position-job-family' class='value'>- n/a -</span>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-10 ml-sm-auto col-lg-10">
+                <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Dashboard</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                <button class="btn btn-sm btn-outline-secondary">Share</button>
+                <button class="btn btn-sm btn-outline-secondary">Export</button>
+              </div>
+              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+              </button>
+            </div>
+          </div> -->
+                <h3 class='label-primary'>List of Candidates</h3>
+                
+                <div id="loader_1">
+                    <div class="loader"></div>
+                    Please wait
+                </div>
+                <div class="table-responsive">
+                    <table id="candidates" class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Actions</th>
+                                <th>Rank</th>
+                                <th>Candidate Name</th>
+                                <th>Position</th>
+                                <th>Position Level</th>
+                                <th>Job Family</th>
+                                <th data-toggle="tooltip" data-placement="top" 
+                                    title="Total Candidate Score (300 pts. max): based on Historical Performance Score, 360 Degree Feedback Score, Level Proximity Score, Functional Affinity Score, and Group Proximity Score">Total Candidate Score</th>
+                                <th data-toggle="tooltip" data-placement="top" 
+                                    title="HISTORICAL PERFORMANCE SCORE (60 pts. max.): based on the 2014-2017 PACE Rating ">Historical Performance</th>
+                                <th data-toggle="tooltip" data-placement="top" 
+                                    title="360 DEGREE FEEDBACK SCORE (60 pts. max.): based on 360 Degree Feedback Ratings for Asst. Managers and higher">360 Deg. Feedack</th>
+                                <th data-toggle="tooltip" data-placement="top" 
+                                    title="LEVEL PROXIMITY SCORE (60 pts. max.): based on similarity of Position Level and Team Size Level of the Target Position vs the Candidate Position">Level Proximity (Position Level &amp; Team Size)</th>
+                                <th data-toggle="tooltip" data-placement="top" 
+                                    title="FUNCTIONAL AFFINITY SCORE (60 pts. max.): based on similarity of Domain, Subdomain, Area and Position Expertise of the Target Position vs the Candidate Position">Functional Affinity <br />(Expertise)</th>
+                                <th data-toggle="tooltip" data-placement="top" 
+                                    title="GROUP PROXIMITY SCORE (60 pts. max.): based on how close the Candidate Position is to the Target Position within the Organizational Hierarchy">Group Proximity <br />(Org. Hierarchy)</th>
+                                <th>Remaining Tenure (Years)</th>
+                                <th>Positions Count</th>
+                                <th>Competency Score</th>
+                                <th>Work History Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr />
+                <h3 class='label-primary'><name>{Name}</name> <small>is a candidate for the following target positions:</small></h3>
+                
+                <div id="loader_2">
+                    <div class="loader"></div>
+                    <br />
+                    Please wait
+                </div>
+                <div class="table-responsive">
+                    <!-- using candidate attrs as filters -->
+                    <table id="target-positions" class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Position Level</th>
+                                <th>Total Candidate Score</th>
+                                <th>Remaining Tenure (Years}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <footer class="text-center text-muted">Natural Intelligence Solutions &copy; 2018</footer>
+            </main>
+        </div>
+    </div>
+    <script>
+    var tp = ""
+    var tpl = ""
+    var tn = ""
+
+    var tc = ""
+    var ta = ""
+    var plg = ""
+
+    var datatable1 = $('#candidates').DataTable();
+    var datatable2 = $('#target-positions').DataTable();
+
+    var countsObj = {}
+    $.get('/getCountPerCandidates', function(counts) {
+        for (var i = 0; i < counts.length; i++) {
+            countsObj[counts[i]['CANDIDATE NAME']] = counts[i].c
+        }
+    });
+
+    function view(e) {
+        $(".tooltipz").remove();
+        var cn = $(e).parent()
+                    .parent()
+                    .find("td:nth-child(3)")
+                    .text()
+        window.open( "/profile?target=" + encodeURIComponent(tn) + "&candidate=" + encodeURIComponent(cn))
+    }
+
+    function loadCandidates() {
+        // if(countsObj == {}) return ;
+
+        // table 1
+        // lodaer show
+        $("#candidates").parent().hide()
+        $("#loader_1").fadeIn()
+        $.get('/getAllCandidates', { tp: tp, tn: tn, tc: tc, ta: ta, plg: plg, tpl: tpl, }, function(res) {
+
+            // loader hide
+            $("#loader_1").hide()
+            $("#candidates").parent().fadeIn()
+
+            // populate select filters
+            var tc_options = []
+            var ta_options = []
+            var plg_options = []
+            for (var i = 0; i < res.length; i++) {
+                tc_options.push(res[i]["GROUP PROXIMITY CATEGORY"])
+                ta_options.push(res[i]["4. FUNCTIONAL AFFINITY SCORE"])
+                plg_options.push(res[i]["Position Level Gap"])
+            }
+            tc_options = _.uniq(tc_options).sort()
+            ta_options = _.uniq(ta_options).sort()
+            plg_options = _.uniq(plg_options).sort()
+
+            $('#select-tc,#select-ta,#select-plg').removeAttr('disabled');
+            if (!tc) {
+                $("#select-tc").empty()
+                for (var i = 0; i < tc_options.length; i++) {
+                    var option = $("<option>")
+                    option.text(tc_options[i])
+                    $("#select-tc").append(option)
+                }
+            }
+            if (!ta) {
+                $("#select-ta").empty()
+                for (var i = 0; i < ta_options.length; i++) {
+                    var option = $("<option>")
+                    option.text(ta_options[i])
+                    $("#select-ta").append(option)
+                }
+            }
+            if (!plg) {
+                $("#select-plg").empty()
+                for (var i = 0; i < plg_options.length; i++) {
+                    var option = $("<option>")
+                    option.text(plg_options[i])
+                    $("#select-plg").append(option)
+                }
+            }
+            $('#select-tc,#select-ta,#select-plg').multiselect('rebuild');
+
+
+            var cols = ["-",
+                "CANDIDATE NAME",
+                "C-POSITION",
+                "C-POSITION LEVEL",
+                "CANDIDATE JOB FAMILY",
+                "TOTAL CANDIDATE SCORE",
+                "1. HISTORICAL PERFORMANCE SCORE",
+                "2. 360 DEG. FEEDBACK SCORE",
+                "3. LEVEL PROXIMITY SCORE",
+                "4. FUNCTIONAL AFFINITY SCORE",
+                "5. GROUP PROXIMITY SCORE",
+                "REMAINING TENURE"
+            ]
+            // $("#candidates tbody").empty()
+            // for (var i = 0; i < res.length; i++) {
+            //     // var tr = $("<tr>")
+            //     var row = res[i]
+            //     for (var j = 0; j < cols.length; j++) {
+            //         // var td = $("<td>")
+            //         var column = cols[j]
+            //         var value = row[column]
+            //         if (j == 0) {
+            //             td.text(i + 1)
+            //         } else {
+            //             td.text(value)
+            //         }
+            //         tr.append(td)
+            //     }
+            //     $("#candidates tbody").append(tr)
+            // }
+
+            var dataArray = []
+            for (var i = 0; i < res.length; i++) {
+                var row = []
+                for (var j = 0; j < cols.length; j++) {
+                    var column = cols[j]
+                    if (j == 0) {
+                        if(tn) {
+                            row.push(`<button onclick="javascript:view(this)"><i class="fa fa-search"></i></button>`);
+                        } else {
+                            row.push("")
+                        }
+                        row.push(i + 1)
+                    } else {
+
+                        // add decimal places to data manually
+                        if (["TOTAL CANDIDATE SCORE",
+                                "1. HISTORICAL PERFORMANCE SCORE",
+                                "2. 360 DEG. FEEDBACK SCORE",
+                                "3. LEVEL PROXIMITY SCORE",
+                                "4. FUNCTIONAL AFFINITY SCORE",
+                                "5. GROUP PROXIMITY SCORE"
+                            ].includes(column)) {
+
+                            var val = res[i][column]
+                            if (!isNaN(parseInt(val))) {
+                                val = parseFloat(val).toFixed(2)
+                                row.push(val)
+                            } else {
+                                row.push(val)
+                            }
+
+                        } else {
+                            row.push(res[i][column])
+                        }
+
+                    }
+                }
+
+                var positions_count = countsObj[res[i]["CANDIDATE NAME"]];
+                row.push(positions_count)
+                row.push("5.00")
+                row.push("5.00")
+
+                dataArray.push(row)
+            }
+
+            // console.log(dataArray)
+
+            datatable1.clear();
+            datatable1.rows.add(dataArray);
+            datatable1.draw();
+
+            $("name").text("{}")
+            datatable2.clear();
+            datatable2.draw();
+
+        })
+    }
+
+    function selectACandidate(cn) {
+        if (cn) {
+            $("name").text(cn)
+            // target positions
+            $.get('/positions', { cn: cn }, function(res) {
+
+                var cols = ["TARGET LEVEL_RANK",
+                    "TARGET NAME",
+                    "T-POSITION",
+                    "T-POSITION LEVEL",
+                    "TOTAL CANDIDATE SCORE",
+                    "REMAINING TENURE"
+                ]
+                // $("#target-positions tbody").empty()
+                // for (var i = 0; i < res.length; i++) {
+                //     var tr = $("<tr>")
+                //     var row = res[i]
+                //     for (var j = 0; j < cols.length; j++) {
+                //         var td = $("<td>")
+                //         var column = cols[j]
+                //         var value = row[column]
+                //         td.text(value)
+                //         tr.append(td)
+                //     }
+                //     $("#target-positions tbody").append(tr)
+                // }
+
+                var dataArray = []
+                for (var i = 0; i < res.length; i++) {
+                    var row = []
+                    for (var j = 0; j < cols.length; j++) {
+                        var column = cols[j]
+                        if (j == 0) {
+                            row.push(i + 1)
+                        } else {
+                            row.push(res[i][column])
+                        }
+                    }
+                    dataArray.push(row)
+                }
+
+                datatable2.clear();
+                datatable2.rows.add(dataArray);
+                datatable2.draw();
+            })
+        }
+    }
+
+    function createNameSelection(data) {
+        $("#filter-name").removeAttr('disabled')
+        // console.log(data)
+        $("#filter-name").easyAutocomplete({
+            data: data,
+            getValue: "TARGET",
+            list: {
+                maxNumberOfElements: 100000,
+                match: {
+                    enabled: true
+                },
+                onChooseEvent: function() {
+                    tn = $("#filter-name").val()
+
+                    $.get('/getTargetProfile', { tn: tn }, function(res) {
+                        if (res && res[0]) {
+                            $("#target-group").text(res[0]["TARGET GROUP"] || "-")
+                            $("#target-position").text(res[0]["T-POSITION"] || "-")
+                            $("#target-position-level").text(res[0]["T-POSITION LEVEL"] || "-")
+                            $("#target-position-job-family").text(res[0]["TARGET JOB FAMILY"] || "-")
+
+                            $("#target-team-size").text(res[0]["T-TEAM SIZE"] || "-")
+                            $("#target-location").text(res[0]["T-AREA"] || "-")
+                            $("#target-course").html(res[0]["T-COURSE"].replace(/\,/g, "<br />") || "-")
+                            $("#target-license").text(res[0]["T-LICENSE"] || "-")
+                            $("#target-retirement-year").text(res[0]["TARGET RETIREMENT YEAR"] || "-")
+                        }
+                    })
+                    loadCandidates();
+
+                }
+            },
+            requestDelay: 250
+        });
+    }
+
+    $("#select-tc, #select-ta, #select-plg").on('change', function(evt) {
+        tpl = ""
+        tc = $("#select-tc").val()
+        ta = $("#select-ta").val()
+        plg = $("#select-plg").val()
+        loadCandidates();
+    })
+
+    $("#select-tpl").on('change', function(evt) {
+        tc = ""
+        ta = ""
+        plg = ""
+        tpl = $("#select-tpl").val()
+        loadCandidates();
+    })
+
+    $(function() {
+        $.get("/listTargetPositions", function(data) {
+            $("#filter-position").easyAutocomplete({
+                data: data,
+                getValue: "T-POSITION",
+                list: {
+                    maxNumberOfElements: 100000,
+                    match: {
+                        enabled: true
+                    },
+                    onChooseEvent: function() {
+                        tn = null
+                        tp = $("#filter-position").val()
+
+                        console.log(tp)
+                        $.get('/getTargetPosition', { tp: tp }, function(res) {
+
+                            if (res && res[0]) {
+                                $("#target-position-license").text(res[0]["T-LICENSE"] || "-")
+                                // $("#target-position-position-level").text(res[0]["T-POSITION LEVEL"] || "-")
+                                $("#target-job-family").text(res[0]["TARGET JOB FAMILY"] || "-")
+                            }
+
+                            var pl_options = []
+                            for (var i = 0; i < res.length; i++) {
+                                pl_options.push(res[i]["T-POSITION LEVEL"])
+                            }
+                            pl_options = _.uniq(pl_options).sort()
+                            $("#select-tpl").empty()
+                            for (var i = 0; i < pl_options.length; i++) {
+                                var option = $("<option>")
+                                option.text(pl_options[i])
+                                $("#select-tpl").append(option)
+                            }
+                            $('#select-tpl').multiselect('rebuild');
+
+                        })
+                        loadCandidates();
+
+                        // populate target names after selection
+                        var q = {}
+                        if (tp) {
+                            q.tp = tp
+                        }
+                        $.get("/listTargetNames", q, function(data) {
+                            createNameSelection(data)
+                        })
+
+                    }
+                },
+                requestDelay: 250
+            });
+
+            $("#filter-position").on('blur', function(evt) {
+                if( $(this).val().trim() == "") {
+                    tp = ""
+                    loadCandidates();
+                }
+            })
+
+            $("#filter-name").on('blur', function(evt) {
+                if( $(this).val().trim() == "") {
+                    tn = ""
+                    loadCandidates();
+                }
+            })
+        });
+
+        addClickOnSelect();
+        // $('#select-tc,#select-ta').multiselect();
+        $('#select-tpl').multiselect();
+    })
+
+    function addClickOnSelect() {
+        console.log("addClickOnSelect")
+        $('#candidates tbody').on('click', 'tr', function() {
+            $(".tooltipz").remove();
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                datatable1.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                var cn = $(this).find("td:nth-child(3)").text()
+                selectACandidate(cn)
+            }
+        });
+    }
+
+    $("[name='target-type']").on('click', function(evt) {
+
+        tn = ""
+        tp = ""
+
+        datatable1.clear();
+        datatable1.draw();
+        datatable2.clear();
+        datatable2.draw();
+
+        var t = $("input[name='target-type']:checked").attr('id')
+        if (t == 'type-position') {
+            tc = ""
+            ta = ""
+
+            $("#filter-name").val('')
+            $("#filter-position").removeAttr('disabled')
+            $("#filter-position").removeAttr('disabled')
+            $("#filter-name").attr('disabled', 'disabled')
+            $("#sidebar-position").fadeIn()
+            $("#sidebar-name").hide()
+            $("#select-tpl-container").show()
+            $("#select-tc-container").hide()
+            $("#select-ta-container").hide()
+            $("#select-plg-container").hide()
+        } else {
+            tpl = ""
+
+            $("#filter-position").val('')
+            $("#filter-name").removeAttr('disabled')
+            $("#filter-position").attr('disabled', 'disabled')
+            $("#sidebar-name").fadeIn()
+            $("#sidebar-position").hide()
+
+            $("#select-tpl-container").hide()
+            $("#select-tc-container").show()
+            $("#select-ta-container").show()
+            $("#select-plg-container").show()
+            $.get("/listTargetNames", function(data) {
+                createNameSelection(data)
+            })
+        }
+    })
+
+    // add tooltip
+    // $('#candidates tbody').on('hover', 'tr', function() {
+    $('#candidates tbody').on('mouseover', 'tr', function() {
+        cn_ = $(this).find('td:nth-child(3)').text()
+        var n = $(this);
+
+        try {
+            $.get("/remarks", {cn:cn_,tn:tn}, function(res) {
+                if(res && res.Remarks) {
+                    n.find('td:nth-child(3)')
+                     .append( $( "<div><span class='tooltipz'>Remarks: " + res.Remarks + " </span></div>" ) );
+                }
+            });
+        } catch(e) {
+
+        }
+    });
+    $('#candidates tbody').on('mouseleave', 'tr', function() {
+        $(".tooltipz").remove();
+      }
+    );
+
+    </script>
+    <div id="tooltipz"></div>
+
+
+</body>
+
+</html>

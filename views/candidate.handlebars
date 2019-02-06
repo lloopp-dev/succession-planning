@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+    <title>Natural Intelligence Solutions</title>
+    <link href="css/bootstrap-material-design.css" rel="stylesheet">
+    <script src="/js/underscore-min.js"></script>
+    <script src="/js/underscore-min.js"></script>
+    <script src="/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap-material-design.min.js"></script>
+    <script src="/js/feather.min.js"></script>
+    <script src="/js/jquery.easy-autocomplete.min.js"></script>
+    <link rel="stylesheet" href="/css/easy-autocomplete.min.css">
+    <script src="/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/Chart.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">HR Succession Planning</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/data">Import Data</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav pull-right">
+                <li class="nav-item">
+                    <a class="nav-link" href='javascript:(function(c){var a,b="You have logged out.";try{a=document.execCommand("ClearAuthenticationCache")}catch(d){}a||((a=window.XMLHttpRequest?new window.XMLHttpRequest:window.ActiveXObject?new ActiveXObject("Microsoft.XMLHTTP"):void 0)?(a.open("HEAD",c||location.href,!0,"logout",(new Date).getTime().toString()),a.send(""),a=1):a=void 0);a||(b="Your browser is too old or too weird to support log out functionality. Close all windows and restart the browser.");alert(b)})(/*pass safeLocation here if you need*/); window.location = "/";'>Log-out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <br>
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div id="sidebar-name" class="sidebar-sticky">
+                    <h3 class='label-primary'>Candidate Profile</h3>
+                    <ul class="nav flex-column">
+                        <li>
+                            <i class="material-icons">group</i>
+                            Group: <span id='candidate-group' class='value'></span>
+                        </li>
+                        <li>
+                            <i class="material-icons">assignment</i>
+                            Position: <span id='candidate-position' class='value'></span>
+                        </li>
+                        <li>
+                            <i class="material-icons">reorder</i>
+                            Position Level: <span id='candidate-position-level' class='value'></span>
+                        </li>
+                        <li>
+                            <i class="material-icons">accessibility</i>
+                            Job Family: <span id='candidate-position-job-family' class='value'></span>
+                        </li>
+                        <li>
+                            <i class="material-icons">tag_faces</i>
+                            Team Size: <span id='candidate-team-size' class='value'></span>
+                        </li>
+                        <li>
+                            <i class="material-icons">home</i>
+                            Location: <span id='candidate-location' class='value'></span>
+                        </li>
+                        <li style="display: none">
+                            <i class="material-icons">grade</i>
+                            Course: <span id='candidate-course' class='value'></span>
+                        </li>
+                        <li>
+                            <i class="material-icons">turned_in</i>
+                            License: <span id='candidate-license' class='value'></span>
+                        </li>
+                        <li>
+                            <i class="material-icons">access_time</i>
+                            Age: <span id='candidate-age' class='value'></span>
+                        </li>
+                        <li>
+                            <i class="material-icons">history</i>
+                            Retirement Year: <span id='candidate-retirement-year' class='value'></span>
+                        </li>
+                        <li>
+                            <i class="material-icons">alarm</i>
+                            Retirement Due: <span id='candidate-retirement-due' class='value'></span>
+                        </li>
+                        <!-- <li>
+                            <i class="material-icons">history</i>
+                            Age: <span id='candidate-age' class='value'>-</span>
+                        </li> -->
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-10 ml-sm-auto col-lg-10">
+                <div id="main-widgets" class="row">
+                    <div class="col-6">
+                        <h3 class="text-center">
+                            <span style="font-size:0.5em">Candidate: </span><br/>{{{ c.[CANDIDATE NAME] }}}
+                            <div class="p-value">{{ c.[C-POSITION] }}</div>
+                        </h3>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="text-center">
+                            <span style="font-size:0.5em">Target: </span><br/>{{{ c.[TARGET NAME] }}}
+                            <div class="p-value">{{ c.[T-POSITION] }}</div>
+                        </h3>
+                    </div>
+                    <div class="col-12" style="border-top: none">
+                        <div class="header dashed-header-top">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target=".collapse1" aria-expanded="true" aria-controls="collapse1">
+                                <div class="btn btn-success"></div>
+                                TOTAL CANDIDATE SCORE: <div class="t-value">{{ c.[TOTAL CANDIDATE SCORE] }}</div>
+                            </button>
+                        </div>
+                        <p class="info">Total Candidate Score (300 pts. max): based on Historical Performance Score, 360 Degree Feedback Score, Level Proximity Score, Functional Affinity Score, and Group Proximity Score</p>
+                    </div>
+                   {{!--  <div class="col-12">
+                        <div class="collapse collapse1" aria-labelledby="heading2" data-parent="#accordion">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3>                            
+                                </h3>
+                            </div>
+                            <div class="col-6">
+                                <h3>
+                                </h3>
+                            </div>
+                        </div>
+                    </div> --}}
+                    </div>
+                    <div class="col-12">
+                        <div class="header dashed-header-top">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target=".collapse2" aria-expanded="true" aria-controls="collapse2">
+                                <div class="btn btn-success"><i class="fa fa-plus"></i></div>
+                                Historical Performance Score (60 pts. max.): <div class="t-value">{{ c.[1. HISTORICAL PERFORMANCE SCORE] }}</div>
+                            </button>
+                        </div>
+                        <p class="info">based on the 2014-2017 PACE Rating </p>
+                    </div>
+                    <div class="col-12">
+                        <div class="collapse collapse2" aria-labelledby="heading2" data-parent="#accordion">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3>
+                                        <div style="height: 300px">
+                                            <canvas id="hps_chart"></canvas>
+                                        </div>
+                                        </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="header dashed-header-top">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target=".collapse3" aria-expanded="true" aria-controls="collapse3">
+                                <div class="btn btn-success"><i class="fa fa-plus"></i></div>
+                                360 Degree Score: <div class="t-value">{{ c.[2. 360 DEG. FEEDBACK SCORE] }}</div>
+                            </button>
+                        </div>
+                        <p class="info">360 DEGREE FEEDBACK SCORE (60 pts. max.): based on 360 Degree Feedback Ratings for Asst. Managers and higher</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="collapse collapse3" aria-labelledby="heading2" data-parent="#accordion">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3>
+                                        <div style="">
+                                            <canvas id="dfs_chart" style="margin-left: 5px;"></canvas>
+                                        </div>
+                                    </h3>
+                                </div>
+                                <div class="col-6">
+                                    <h3>
+                                        <div style="">
+                                            <canvas id="dfs_chart_t" style="margin-left: 5px;"></canvas>
+                                        </div>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="header dashed-header-top">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target=".collapse4" aria-expanded="true" aria-controls="collapse4">
+                                <div class="btn btn-success"><i class="fa fa-plus"></i></div>
+                                Level Proximity Score: <div class="t-value">{{ c.[3. LEVEL PROXIMITY SCORE] }}</div>
+                            </button>
+                        </div>
+                        <p class="info">LEVEL PROXIMITY SCORE (60 pts. max.): based on similarity of Position Level and Team Size Level of the Target Position vs the Candidate Position</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="collapse collapse4" aria-labelledby="heading2" data-parent="#accordion">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3>
+                                        <div class="t-size">Team Size: <span id="lps_ts" style="font-size: 1.4em;">{{ c.[C-TEAM SIZE]}}</span>
+                                            <div style="height: 300px;">
+                                                <canvas id="lps_chart"></canvas>
+                                            </div>
+                                        </div>
+                                    </h3>
+                                </div>
+                                <div class="col-6">
+                                    <h3>
+                                        <div class="t-size">Team Size: <span id="lps_ts" style="font-size: 1.4em;">{{ c.[T-TEAM SIZE]}}</span>
+                                            <div style="height: 300px;">
+                                                <canvas id="lps_chart_t"></canvas>
+                                            </div>
+                                        </div>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="header dashed-header-top">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target=".collapse5" aria-expanded="true" aria-controls="collapse5">
+                                <div class="btn btn-success"><i class="fa fa-plus"></i></div>
+                                Functional Affinity Score: <div class="t-value">{{ c.[4. FUNCTIONAL AFFINITY SCORE] }}</div>
+                            </button>
+                        </div>
+                        <p class="info">LEVEL PROXIMITY SCORE (60 pts. max.): based on similarity of Position Level and Team Size Level of the Target Position vs the Candidate Position</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="collapse collapse5" aria-labelledby="heading2" data-parent="#accordion">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3>
+                                        <table class="table fas_table">
+                                            <tr>
+                                                <td>Supervisor</td>
+                                                <td> {{ c.[C-SUPERVISOR NAME] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Supervisor Position</td>
+                                                <td> {{ c.[CANDIDATE SUPERVISOR POSITION] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Domain</td>
+                                                <td> {{ c.[C-DOMAIN] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Domain Expertise</td>
+                                                <td> {{ c.[DOMAIN EXPERTISE SCORE] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sub Domain </td>
+                                                <td> {{ c.[C-SUB-DOMAIN] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sub Domain Expertise</td>
+                                                <td> {{ c.[SUB DOMAIN EXPERTISE SCORE] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Area</td>
+                                                <td> {{ c.[C-AREA] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Area Expertise</td>
+                                                <td> {{ c.[AREA EXPERTISE SCORE] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Generic Position</td>
+                                                <td> {{ c.[C-GENERIC POSITION] }} </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                </div>
+                                <div class="col-6">
+                                    <h3>
+                                        <table class="table fas_table">
+                                            <tr>
+                                                <td>Supervisor</td>
+                                                <td> {{ c.[T-SUPERVISOR NAME] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Supervisor Position</td>
+                                                <td> {{ c.[TARGET SUPERVISOR POSITION] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Domain</td>
+                                                <td> {{ c.[T-DOMAIN] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> &nbsp; </td>
+                                                <td> &nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sub Domain </td>
+                                                <td> {{ c.[T-SUB-DOMAIN] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> &nbsp; Domain Expertise</td>
+                                                <td> &nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Area</td>
+                                                <td> {{ c.[T-AREA] }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> &nbsp; </td>
+                                                <td> &nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Generic Position</td>
+                                                <td> {{ c.[T-GENERIC POSITION] }} </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="border-top: none">
+                        <div class="header dashed-header-top">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target=".collapse6" aria-expanded="true" aria-controls="collapse6">
+                                <div class="btn btn-success"></div>
+                                Group Proximity Score: <div class="t-value">{{ c.[5. GROUP PROXIMITY SCORE] }}</div>
+                            </button>
+                        </div>
+                        <p class="info">GROUP PROXIMITY SCORE (60 pts. max.): based on how close the Candidate Position is to the Target Position within the Organizational Hierarchy</p>
+                    </div>
+
+                    {{!-- <div class="col-12">
+                        <div class="collapse collapse6" aria-labelledby="heading2" data-parent="#accordion">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3>
+                                    
+                                    </h3>
+                                </div>
+                                <div class="col-6">
+                                    <h3>
+
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <hr class="remarks-hr" />
+                    <div class="col-12 footer">
+                        <form method="POST">
+                            <div class="container">
+                                <input name="target" type="hidden" value="{{ c.[TARGET NAME] }}">
+                                <input name="candidate" type="hidden" value="{{ c.[CANDIDATE NAME] }}">
+                                <div class="form-group">
+                                    <label for="remarks">Remarks:</label>
+                                    <textarea name="remarks" class="form-control" rows="5" id="Remarks"></textarea>
+                                </div>
+                                <!-- <a href="/"><button class="btn btn-lg btn-danger pull-left"><i class="fa fa-undo"></i> Return to List</button></a> -->
+                                <button type="submit" class="btn btn-lg btn-primary pull-right"><i class="fa fa-save"></i> Save Remarks</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <hr />
+                <footer class="text-center text-muted">Natural Intelligence Solutions &copy; 2018</footer>
+            </main>
+        </div>
+    </div>
+    <style>
+
+    .btn-success {
+        /*display: none*/
+        margin-left: -20px;
+    }
+
+    .dashed-header-top {
+        border-top: 2px dashed #eee;
+    }
+
+    .row>* {
+        margin-bottom: 0px !important;
+    }
+
+    .btn-link {
+        font-size: 1rem;
+    }
+
+    .card-header i {
+        margin-right: 20px;
+    }
+
+    .footer .btn {
+        padding: 5px;
+        border: 1px solid !important;
+        padding: 10px 20px;
+        text-transform: none;
+    }
+
+    .footer textarea {
+        background-color: #FFF;
+    }
+
+    .t-value {
+        font-size: 28px;
+        font-weight: bold;
+        color: #FF8000;
+        text-align: center;
+    }
+
+    .p-value {
+        font-size: 14px;
+        font-weight: bold;
+        color: #FF8000;
+        text-align: center;
+    }
+
+    .t-size {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .card {
+        border: 0px;
+        box-shadow: none;
+        margin-bottom: 10px;
+        background-color: rgb(0, 0, 0, 0);
+    }
+
+    .card-header {
+        padding: 5px !important;
+        border-bottom: none;
+        text-decoration: none;
+    }
+
+    .header {
+        text-transform: uppercase;
+        margin: 0px;
+        vertical-align: center;
+        margin-bottom: 0px;
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .collapse .card-body,
+    .card-body {}
+
+    #main-widgets {
+        margin-top: 0px;
+    }
+
+    #main-widgets h3{
+        min-height: 60px;
+    }
+
+    .row>* {
+        margin-bottom: 20px;
+    }
+
+    .row .card-body {}
+
+    .block {
+        display: block;
+    }
+
+    @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url(fonts/material-design.woff2) format('woff2');
+    }
+
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+    }
+
+    th {
+        font-size: 0.8em !important;
+        font-weight: bold;
+    }
+
+    td {
+        font-size: 0.8em;
+    }
+
+    .value {
+        font-weight: bold;
+        color: #0080FF;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .material-icons {
+        vertical-align: bottom;
+    }
+
+    body {
+        min-width: 1200px;
+        margin-bottom: 20px;
+        background-image: url('/images/edc-logo.jpg');
+    }
+
+    .label-primary {
+        color: #FF9B00;
+    }
+
+    main {
+        min-height: 800px !important;
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+
+    .bg-dark {
+        background-color: #FF9800 !important;
+    }
+
+    h3 {
+        margin-top: 10px;
+    }
+
+    main h3 {
+        background-color: #EEE;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    footer {
+        margin-bottom: 20px;
+    }
+
+    .container {
+        min-width: calc(100% - 60px);
+    }
+
+    inpuc[type='text'] {
+        background-color: #FAFAFA
+    }
+
+    #hps_chart,
+    #hps_chart_t,
+    #lps_chart,
+    #fas_chart {
+        max-height: 300px;
+        max-width: 100%;
+    }
+
+    #dfs_chart,
+    #dfs_chart_t, {
+        max-height: 400px;
+        max-width: 1000px;
+        margin-bottom: -200px;
+        margin-left: -100px;
+        margin-top: -10px;
+    }
+
+    .fas_table {
+        margin: 10px;
+    }
+
+    .fas_table tr td:nth-child(1) {
+        font-weight: normal;
+        font-size: 12px;
+    }
+
+    .fas_table tr td:nth-child(2) {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    #Remarks {
+        padding: 10px;
+        font-size: 20px;
+        color: #0080FF;
+        font-family: Verdana;
+        height: 50px;
+    }
+
+    .remarks-hr {
+        width: 80%;
+    }
+
+    .info {
+        font-size: 0.8em;
+        color: #999;
+        font-style: italic;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-link {
+        min-width: 80px;
+    }
+    </style>
+    <script>
+    $.get("/candidate", { target: "{{{ c.[TARGET NAME] }}}", candidate: "{{{ c.[CANDIDATE NAME] }}}" }, function(res) {
+
+        var c = res.c
+
+        console.log(c)
+
+        if (c) {
+            $("#candidate-group").text(c["CANDIDATE GROUP"] || "-")
+            $("#candidate-position").text(c["C-POSITION"] || "-")
+            $("#candidate-position-level").text(c["C-POSITION LEVEL"] || "-")
+            $("#candidate-position-job-family").text(c["CANDIDATE JOB FAMILY"] || "-")
+
+            $("#candidate-team-size").text(c["C-TEAM SIZE"] || "-")
+            $("#candidate-location").text(c["C-AREA"] || "-")
+            $("#candidate-course").html(c["C-COURSE"].replace(/\,/g, "<br />") || "-")
+            $("#candidate-license").text(c["C-PROFESSIONAL LICENSE"] || "-")
+            $("#candidate-retirement-year").text(c["RETIREMENT YEAR"] || "-")
+            $("#candidate-retirement-due").text(c["RETIREMENT DUE"] || "-")
+            $("#candidate-age").text(c["AGE"] || "-")
+        }
+
+
+        function toggleChevron(e) {
+            console.log(e.target)
+            $(e.target)
+                .prev('.card-header')
+                .find("i.fa")
+                .toggleClass('fa-minus fa-plus');
+        }
+
+        $('#accordion').on('hidden.bs.collapse', toggleChevron);
+        $('#accordion').on('shown.bs.collapse', toggleChevron);
+
+        // historical performance score
+        var config = {
+            type: 'bar',
+            data: {
+                labels: ['2014', '2015', '2016', '2017'],
+                datasets: [{
+                    label: 'Value',
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    backgroundOpacity: 0.1,
+                    data: [c[2014], c[2015], c[2016], c[2017]],
+                },{
+                    label: 'Target',
+                    backgroundColor: 'rgba(0, 99, 132, 0.5)',
+                    backgroundOpacity: 0.1,
+                    data: [c['TARGET 2014'], c['TARGET 2015'], c['TARGET 2016'], c['TARGET 2017']],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Historical Performance Score'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Year'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 5,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+        var ctx = document.getElementById('hps_chart').getContext('2d');
+        ctx.height = 200;
+        window.hps = new Chart(ctx, config);
+
+
+        // 360 degree feedback score
+        var config = {
+            type: 'radar',
+            data: {
+                labels: [
+                    ['Influence'],
+                    ['Cultivate Networks'],
+                    ['Navigate Politics'],
+                    ['Comp# Comm#'],
+                    ['Collaboration'],
+                    ['Sell Vision'],
+                    ['Emp# & Delegation'],
+                    ['Coach & Develop Others'],
+                    ['Lead Change'],
+                    ['Est# Strat# Dir#'],
+                    ['DriveExecution'],
+                    ['Operational Decision-making'],
+                    ['Entrepreneurship'],
+                    ['Business Savvy'],
+                    ['Build Org Talent'],
+                    ['Customer Focus'],
+                    ['Business Acumen'],
+                    ['Passion for Results'],
+                    ['Authenticity'],
+                    ['Learning Agility']
+                ],
+                datasets: [{
+                    label: 'Value',
+                    backgroundColor: 'rgba(132, 99, 255, 0.5)',
+                    backgroundOpacity: 0.1,
+                    data: [c['Influence-C'],
+                        c['Cult# Networks-C'],
+                        c['Nav# Politics-C'],
+                        c['Comp# Comm#-C'],
+                        c['Collaboration-C'],
+                        c['Sell Vision-C'],
+                        c['Emp# & Delegation-C'],
+                        c['Coach & Dev# Others-C'],
+                        c['Lead Change-C'],
+                        c['Est# Strat# Dir#-C'],
+                        c['Drive Exec#-C'],
+                        c['Op\'l# Dec-making-C'],
+                        c['Entrepreneurship-C'],
+                        c['Bus# Savvy-C'],
+                        c['Build Org# TalenC-C'],
+                        c['Cust# Focus-C'],
+                        c['Bus# Acumen-C'],
+                        c['Passion for Results-C'],
+                        c['Authenticity-C'],
+                        c['Learning Agility-C']
+                    ]
+                }],
+            },
+            options: {
+                legend: {
+                    position: 'top',
+                },
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)',
+                    fontSize: 150
+                },
+                title: {
+                    display: true,
+                    text: '360 Degree Feedback Score',
+                },
+                scale: {
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 5,
+                        beginAtZero: true
+                    },
+                    pointLabels: {
+                        fontSize: 12
+                    }
+                }
+            }
+        }
+        var ctx = document.getElementById('dfs_chart').getContext('2d');
+        ctx.height = 640;
+        window.dfs = new Chart(ctx, config);
+        var config = {
+            type: 'radar',
+            data: {
+                labels: [
+                    ['Influence'],
+                    ['Cultivate Networks'],
+                    ['Navigate Politics'],
+                    ['Comp# Comm#'],
+                    ['Collaboration'],
+                    ['Sell Vision'],
+                    ['Emp# & Delegation'],
+                    ['Coach & Develop Others'],
+                    ['Lead Change'],
+                    ['Est# Strat# Dir#'],
+                    ['Drive Execution'],
+                    ['Operational Decision-making'],
+                    ['Entrepreneurship'],
+                    ['Business Savvy'],
+                    ['Build Org Talent'],
+                    ['Customer Focus'],
+                    ['Business Acumen'],
+                    ['Passion for Results'],
+                    ['Authenticity'],
+                    ['Learning Agility']
+                ],
+                datasets: [{
+                    label: 'Value',
+                    backgroundColor: 'rgba(132, 99, 255, 0.5)',
+                    backgroundOpacity: 0.1,
+                    data: [c['Influence-T'],
+                           c['Cult# Networks-T'],
+                           c['Nav# Politics-T'],
+                           c['Comp# Comm#-T'],
+                           c['Collaboration-T'],
+                           c['Sell Vision-T'],
+                           c['Emp# & Delegation-T'],
+                           c['Coach & Dev# Others-T'],
+                           c['Lead Change-T'],
+                           c['Est# Strat# Dir#-T'],
+                           c['Drive Exec#-T'],
+                           c['Op\'l# Dec-making-T'],
+                           c['Entrepreneurship-T'],
+                           c['Bus# Savvy-T'],
+                           c['Build Org# Talent-T'],
+                           c['Cust# Focus-T'],
+                           c['Bus# Acumen-T'],
+                           c['Passion for Results-T'],
+                           c['Authenticity-T'],
+                           c['Learning Agility-T']]
+                }],
+            },
+            options: {
+                legend: {
+                    position: 'top',
+                },
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)',
+                    fontSize: 150
+                },
+                title: {
+                    display: true,
+                    text: '360 Degree Feedback Score',
+                },
+                scale: {
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 5,
+                        beginAtZero: true
+                    },
+                    pointLabels: {
+                        fontSize: 12
+                    }
+                }
+            }
+        }
+        var ctx = document.getElementById('dfs_chart_t').getContext('2d');
+        ctx.height = 640;
+        window.dfs = new Chart(ctx, config);
+
+        // level proximity score
+        var config = {
+            type: 'bar',
+            data: {
+                labels: ['Position Level Score', 'Team Size Level Score'],
+                datasets: [{
+                    label: 'Value',
+                    backgroundColor: 'rgba(132, 99, 255, 0.5)',
+                    backgroundOpacity: 0.1,
+                    data: [c["Position_Level_Score"], c["SOC_Rank_Score"]],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Level Proximity Score'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: ''
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 5,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+        var ctx = document.getElementById('lps_chart').getContext('2d');
+        ctx.height = 200;
+        window.lps = new Chart(ctx, config);
+
+        var config = {
+            type: 'bar',
+            data: {
+                labels: ['Position Level Score', 'Team Size Level Score'],
+                datasets: [{
+                    label: 'Value',
+                    backgroundColor: 'rgba(132, 99, 255, 0.5)',
+                    backgroundOpacity: 0.1,
+                    data: [c["TARGET LEVEL_RANK"], c["TARGET TEAM SIZE LEVEL"]],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Level Proximity Score'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: ''
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 5,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+        var ctx = document.getElementById('lps_chart_t').getContext('2d');
+        ctx.height = 200;
+        window.lps = new Chart(ctx, config);
+
+        $.get("/meta", { target: c['TARGET NAME'], candidate: c['CANDIDATE NAME'] }, function(res) {
+            $("#Remarks").text(res.t.Remarks)
+        })
+    })
+    </script>
+</body>
+
+</html>
